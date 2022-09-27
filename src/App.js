@@ -1,10 +1,12 @@
 import "./App.css";
+import Container from "./components/Container";
+import { ChatProvider } from "./context/ChatContext.js";
 
 function App() {
 	return (
-		<div>
-      <p>Chat-App</p>
-    </div>
+      <ChatProvider>
+          <Container />
+      </ChatProvider>
 	);
 }
 

@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import styles from './styles.module.css'
+import { sendMessage } from '../socketApi';
+import { useChat } from '../context/ChatContext.js';
+import styles from './styles.module.css';
 
 function ChatForm() {
   const [message, setMessage] = useState('');
 
-  const handleSubmit =  (e) => {
+  const {setMessages} = useChat();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(message);
+
+    setMessages((prevState) => [...prevState, {message, forMe: true }]);
+
+    sendMessage(message);
     setMessage('');
   };
 
